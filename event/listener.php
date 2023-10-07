@@ -71,7 +71,7 @@ class listener implements EventSubscriberInterface
 		\phpbb\user $user,
 		\phpbb\log\log_interface $log,
 		\phpbb\db\driver\driver_interface $db,
-		\phpbb\auth\auth $auth, 
+		\phpbb\auth\auth $auth,
 		$phpbb_root_path,
 		$php_ext,
 		$sfs_log_table
@@ -255,7 +255,7 @@ class listener implements EventSubscriberInterface
 		if ($mode == 'registration')
 		{
 			$count = 0;
-			foreach($display_vars['vars'] as $key => $value)
+			foreach ($display_vars['vars'] as $key => $value)
 			{
 				if (strripos($key, 'legend') === 0)
 				{

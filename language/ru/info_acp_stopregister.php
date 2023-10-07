@@ -36,7 +36,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'ACP_REGISTER_LOGS'			=> 'Лог регистраций',
- 	'ACP_REGISTER_LOGS_EXPLAIN'	=> 'Это список попыток регистраций пользователей.',
+	'ACP_REGISTER_LOGS_EXPLAIN'	=> 'Это список попыток регистраций пользователей.',
 	'IP_BLACKLIST'				=> '<span style="color: #BC2A4D;">IP-адрес был внесён в черный список сервиса <a href="http://www.stopforumspam.com" target = "_blank">www.stopforumspam.com</a>',
 	'NICK_BLACKLIST'			=> 'Имя пользователя <strong style="color: #BC2A4D;">%1$s</span> было внесёно в черный список сервиса <a href="http://www.stopforumspam.com" target = "_blank">www.stopforumspam.com</a>',
 	'EMAIL_BLACKLIST'			=> 'Адрес e-mail <strong style="color: #BC2A4D;">%1$s</strong> был внесён в черный список сервиса <a href="http://www.stopforumspam.com" target = "_blank">www.stopforumspam.com</a>',
