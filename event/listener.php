@@ -52,6 +52,9 @@ class listener implements EventSubscriberInterface
 	/** @var \phpbb\db\driver\driver_interface $db */
 	protected $db;
 
+	/** @var \phpbb\auth\auth */
+	protected $auth;
+
 	/** @var string phpbb_root_path */
 	protected $phpbb_root_path;
 
@@ -68,6 +71,7 @@ class listener implements EventSubscriberInterface
 		\phpbb\user $user,
 		\phpbb\log\log_interface $log,
 		\phpbb\db\driver\driver_interface $db,
+		\phpbb\auth\auth $auth,
 		$phpbb_root_path,
 		$php_ext,
 		$sfs_log_table
@@ -79,6 +83,7 @@ class listener implements EventSubscriberInterface
 		$this->user					= $user;
 		$this->phpbb_log			= $log;
 		$this->db					= $db;
+		$this->auth					= $auth;
 		$this->phpbb_root_path		= $phpbb_root_path;
 		$this->php_ext				= $php_ext;
 		$this->sfs_log				= $sfs_log_table;
@@ -98,7 +103,7 @@ class listener implements EventSubscriberInterface
 	{
 		$post_data = $event['post_data'];
 
-		if ($post_data['poster_id'] == ANONYMOUS)
+		if ($post_data['poster_id'] == ANONYMOUS && !($this->auth->acl_get('m_') || $this->auth->acl_getf_global('m_')))
 		{
 			$user_ip = $this->user->data['session_ip'];
 			if (!$this->config['enable_stopforumspam'])
@@ -250,7 +255,7 @@ class listener implements EventSubscriberInterface
 		if ($mode == 'registration')
 		{
 			$count = 0;
-			foreach($display_vars['vars'] as $key => $value)
+			foreach ($display_vars['vars'] as $key => $value)
 			{
 				if (strripos($key, 'legend') === 0)
 				{
